@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+# print("running trigger_aws_test_run.py")
+# import sys
+# print(sys.version)
+
 """
 This module will handle test run on AWS Device Farm
 """
@@ -10,7 +14,7 @@ import time
 import boto3
 import requests
 
-
+print("running trigger_aws_test_run.py")
 REGION = 'us-west-2'
 PROJECT_NAME = 'edx-app-test'
 DEVICE_POOL_NAME = 'edx_devices_pool'
@@ -24,9 +28,9 @@ UPLOAD_SUCCESS_STATUS = 'SUCCEEDED'
 RUN_COMPLETED_STATUS = 'COMPLETED'
 TARGET_AVAILABILITY = 'HIGHLY_AVAILABLE'
 APK_PATH = 'OpenEdXMobile/build/outputs/apk/prod/debuggable/'
-AUT_NAME = APK_PATH + 'edx-debuggable-2.20.2.apk'
+AUT_NAME = APK_PATH + 'edx-debuggable-2.21.1.apk'
 PACKAGE_NAME = 'test_bundle.zip'
-CUSTOM_SPECS_NAME = 'edx.yml'
+CUSTOM_SPECS_NAME = 'resources/edx.yml'
 status_flag = False
 
 

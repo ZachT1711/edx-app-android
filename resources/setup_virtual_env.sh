@@ -17,7 +17,7 @@ fi
 }
 
 create_or_switch_to_virtual_environment(){
-virtual_env_dir="./virtual_env"
+virtual_env_dir="./virtual_env3"
 if [ -d "$virtual_env_dir" ]
 then
 switch_to_virtual_env
@@ -35,7 +35,7 @@ pip3 install virtualenv
 
 create_virtual_environment(){
 print_message "creating virtual environment"
-virtualenv -p /usr/bin/python3.6 ./virtual_env
+virtualenv -p /usr/bin/python3.6 ./virtual_env3
 }
 
 install_requirement_txt(){
@@ -47,11 +47,12 @@ print_message "all requirements are installed"
 
 switch_to_virtual_env(){
 print_message "switching to virtual environment with following python version"
-source "./virtual_env/bin/activate"
+source "./virtual_env3/bin/activate"
 python --version
 }
 
 check_and_install_virtualenv
 create_or_switch_to_virtual_environment
+ls 
 print_message "calling AWS Test run"
 python ./resources/trigger_aws_test_run.py
