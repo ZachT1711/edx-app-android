@@ -30,7 +30,7 @@ TARGET_AVAILABILITY = 'HIGHLY_AVAILABLE'
 APK_PATH = 'OpenEdXMobile/build/outputs/apk/prod/debuggable/'
 AUT_NAME = APK_PATH + 'edx-debuggable-2.21.1.apk'
 PACKAGE_NAME = 'test_bundle.zip'
-CUSTOM_SPECS_NAME = 'resources/edx.yml'
+CUSTOM_SPECS_NAME = 'trigger_aws.yml'
 status_flag = False
 
 
