@@ -16,21 +16,24 @@ import requests
 
 print("running trigger_aws_test_run.py")
 REGION = 'us-west-2'
-PROJECT_NAME = 'edx-app-test'
-DEVICE_POOL_NAME = 'edx_devices_pool'
+PROJECT_NAME = 'edx-app-test_try'
+DEVICE_POOL_NAME = 'edx_devices_pool_try'
 ANDROID_APP_UPLOAD_TYPE = 'ANDROID_APP'
 PACKAGE_UPLOAD_TYPE = 'APPIUM_PYTHON_TEST_PACKAGE'
 CUSTOM_SPECS_UPLOAD_TYPE = 'APPIUM_PYTHON_TEST_SPEC'
 RUN_TYPE = 'APPIUM_PYTHON'
-RUN_NAME = 'edX_test_run'
+RUN_NAME = 'edX_test_run_try'
 RUN_TIMEOUT_SECONDS = 60 * 30
 UPLOAD_SUCCESS_STATUS = 'SUCCEEDED'
 RUN_COMPLETED_STATUS = 'COMPLETED'
 TARGET_AVAILABILITY = 'HIGHLY_AVAILABLE'
 APK_PATH = 'OpenEdXMobile/build/outputs/apk/prod/debuggable/'
-AUT_NAME = APK_PATH + 'edx-debuggable-2.21.1.apk'
+# APK_PATH = ''
+# AUT_NAME = APK_PATH + 'edx-debuggable-2.21.1.apk'
+AUT_NAME = 'edx-debuggable-2.21.1.apk'
 PACKAGE_NAME = 'test_bundle.zip'
-CUSTOM_SPECS_NAME = 'trigger_aws.yml'
+CUSTOM_SPECS_NAME = 'edx.yml'
+# PACKAGE_NAME = 'test_bundle.zip'
 status_flag = False
 
 
@@ -52,21 +55,38 @@ def aws_job():
     get_device_info(target_project_arn)
 
     project_arn = get_project_arn(PROJECT_NAME)
-    aut_arn = upload_file(
-        project_arn,
-        ANDROID_APP_UPLOAD_TYPE,
-        AUT_NAME
-        )
+    
     package_arn = upload_file(
         project_arn,
         PACKAGE_UPLOAD_TYPE,
         PACKAGE_NAME
         )
+    
+    os.system('cd resources')
+    print('-------------------------')
+    os.system('pwd')
+    os.system('ls')
+    print('-------------------------')
+
     test_specs_arn = upload_file(
         project_arn,
         CUSTOM_SPECS_UPLOAD_TYPE,
         CUSTOM_SPECS_NAME
         )
+
+    os.system('cd ..')
+    os.system('cd OpenEdXMobile/build/outputs/apk/prod/debuggable/')
+    print('-------------------------')
+    os.system('pwd')
+    os.system('ls')
+    print('-------------------------')
+    aut_arn = upload_file(
+        project_arn,
+        ANDROID_APP_UPLOAD_TYPE,
+        AUT_NAME
+        )
+
+    
     device_pool_arn = get_device_pool(project_arn, DEVICE_POOL_NAME)
 
     test_run_arn = schedule_run(
@@ -213,7 +233,8 @@ def schedule_run(project_arn, name, device_pool_arn, app_arn,
         name=name,
         test={'type': RUN_TYPE,
               'testPackageArn': test_package_arn,
-              'testSpecArn': test_specs_arn,},
+              'testSpecArn': test_specs_arn
+              },
     )
 
     run_arn = schedule_run_result['run']['arn']
@@ -543,4 +564,5 @@ def get_device_info(target_project_arn):
         print('Problem finding device from pool {}'.format(device_info))
 
 if __name__ == '__main__':
+
     aws_job()
