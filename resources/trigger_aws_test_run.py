@@ -32,7 +32,7 @@ APK_PATH = 'OpenEdXMobile/build/outputs/apk/prod/debuggable/'
 # AUT_NAME = APK_PATH + 'edx-debuggable-2.21.1.apk'
 AUT_NAME = 'edx-debuggable-2.21.1.apk'
 PACKAGE_NAME = 'test_bundle.zip'
-CUSTOM_SPECS_NAME = 'edx.yml'
+CUSTOM_SPECS_NAME = 'trigger_aws.yml'
 # PACKAGE_NAME = 'test_bundle.zip'
 status_flag = False
 
@@ -62,12 +62,6 @@ def aws_job():
         PACKAGE_NAME
         )
     
-    os.system('cd resources')
-    print('-------------------------')
-    os.system('pwd')
-    os.system('ls')
-    print('-------------------------')
-
     test_specs_arn = upload_file(
         project_arn,
         CUSTOM_SPECS_UPLOAD_TYPE,
@@ -147,7 +141,7 @@ def upload_file(project_arn, upload_type, target_file_name):
 
     _upload_presigned_url(pre_signed_url, name)
 
-    timeout_seconds = 10
+    timeout_seconds = 120
     check_every_seconds = 10 if timeout_seconds == RUN_TIMEOUT_SECONDS else 1
     start = time.time()
     while True:
