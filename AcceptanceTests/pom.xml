@@ -18,17 +18,17 @@
 		<baseUrl>http://${env}</baseUrl>
 		<outputPath>Test-Reports/${env}/${timestamp}</outputPath>
 		<testngXml>android.xml</testngXml>
-		<sauceUser></sauceUser>
-		<sauceKeys></sauceKeys>
-		<sauceBuildName></sauceBuildName>
-		<deviceOS></deviceOS>
-		<appPath></appPath>
-		<osVersion></osVersion>
-		<deviceName></deviceName>
-		<appPackage></appPackage>
-		<emailId></emailId>
-		<password></password>
-		<udid></udid>
+		<sauceUser/>
+		<sauceKeys/>
+		<sauceBuildName/>
+		<deviceOS/>
+		<appPath/>
+		<osVersion/>
+		<deviceName/>
+		<appPackage/>
+		<emailId/>
+		<password/>
+		<udid/>
 	</properties>
 
 	<dependencies>
@@ -46,7 +46,7 @@
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
-			<version>2.43.1</version>
+			<version>3.13.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.json</groupId>
@@ -61,7 +61,7 @@
 		<dependency>
 			<groupId>io.appium</groupId>
 			<artifactId>java-client</artifactId>
-			<version>2.1.0</version>
+			<version>7.0.0</version>
 		</dependency>
 	</dependencies>
 
